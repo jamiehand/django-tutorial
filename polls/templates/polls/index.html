@@ -1,0 +1,17 @@
+<!--After writing this, update our "index" view in polls/views.py to use this template.-->
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <!--"polls" part of "polls:detail" makes it point to the "namespaced" detail view
+            This creates the URL that is requested when the link is clicked. -->
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
